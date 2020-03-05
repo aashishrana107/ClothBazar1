@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClothBazar.Entities
 {
-    public class Class1
+    public class Product : BaseEntity
     {
-
+        public Category Category { get; set; }
+       
+        public decimal Price { get; set; }
     }
 }
