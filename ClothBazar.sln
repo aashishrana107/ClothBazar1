@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothBazar.Web", "ClothBazar.Web\ClothBazar.Web.csproj", "{C48CB48A-A368-4791-99B1-641B2F5FF259}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothBazar.Entities", "ClothBazar.Entities\ClothBazar.Entities.csproj", "{C03AEC90-75C4-4DAC-8A20-A16F754A303C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C48CB48A-A368-4791-99B1-641B2F5FF259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C48CB48A-A368-4791-99B1-641B2F5FF259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C48CB48A-A368-4791-99B1-641B2F5FF259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C03AEC90-75C4-4DAC-8A20-A16F754A303C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C03AEC90-75C4-4DAC-8A20-A16F754A303C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C03AEC90-75C4-4DAC-8A20-A16F754A303C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C03AEC90-75C4-4DAC-8A20-A16F754A303C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
