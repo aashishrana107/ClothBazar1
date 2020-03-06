@@ -42,12 +42,14 @@ namespace ClothBazar.Service
                 context.SaveChanges();
             }
         }
-        public void DeleteCategory(Category category)
+        public void DeleteCategory(int ID)
         {
-            using (var context = new CBContext)
+            using (var context = new CBContext())
             {
                 // context.Entry(category).State = System.Data.Entity.EntityState.Deleted;
+                var category = context.Categories.Where(s => s.ID == ID).FirstOrDefault();
                 context.Categories.Remove(category);
+                context.SaveChanges();
             }
         }
     }

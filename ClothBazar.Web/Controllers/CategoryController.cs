@@ -47,10 +47,9 @@ namespace ClothBazar.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int ID)
+        public ActionResult Delete(Category category)
         {
-            var category = catergoriesService.GetCategory(ID);
-            catergoriesService.EditCategory(category);
+            catergoriesService.DeleteCategory(category.ID);
             return RedirectToAction("Index");
         }
         
