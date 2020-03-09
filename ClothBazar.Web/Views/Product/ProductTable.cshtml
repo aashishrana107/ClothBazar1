@@ -4,16 +4,26 @@
     ViewBag.Title = "ProductTable";
 }
 
+
+
 <div>
     <form method="post">
-        <input name="search" id="searchTxt"/>
-        <button type="button" id="searchBtn">Search</button>
+
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Here" name="search" id="searchTxt" aria-label="Recipient's username with two button addons" aria-describedby="button-addon4">
+            <div class="input-group-append" id="button-addon4">
+                <button  id="searchBtn" type="button">Search</button>
+                <button  id="newBtn" type="button">New</button>
+            </div>
+        </div>
+
     </form>
-    <button type="button" id="newBtn">New</button>
+  
+    
 </div>
 
-
-    <table>
+<div>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <td>Product Name</td>
@@ -23,18 +33,18 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var product in Model)
+            @foreach (var product in Model)
             {
                 <tr>
                     <td>@product.Name</td>
                     <td>
-                        @if(@product.Category != null)
+                        @if (@product.Category != null)
                         {
-                        <text>@product.Category.Name</text>
+                            <text>@product.Category.Name</text>
                         }
                         else
                         {
-                        <text>-</text>
+                            <text>-</text>
                         }
 
                     </td>
