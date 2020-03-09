@@ -52,9 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CBContext.cs" />
-    <Compile Include="Migrations\202003051511234_initalized.cs" />
-    <Compile Include="Migrations\202003051511234_initalized.designer.cs">
-      <DependentUpon>202003051511234_initalized.cs</DependentUpon>
+    <Compile Include="Migrations\202003090457498_initialized.cs" />
+    <Compile Include="Migrations\202003090457498_initialized.designer.cs">
+      <DependentUpon>202003090457498_initialized.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,8 +70,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003051511234_initalized.resx">
-      <DependentUpon>202003051511234_initalized.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003090457498_initialized.resx">
+      <DependentUpon>202003090457498_initialized.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initalized : DbMigration
+    public partial class initialized : DbMigration
     {
         public override void Up()
         {
@@ -12,6 +12,7 @@
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
+                        ImageURL = c.String(),
                         Name = c.String(),
                         Description = c.String(),
                     })
