@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace ClothBazar.Service
 {
@@ -14,15 +15,17 @@ namespace ClothBazar.Service
         {
             using (var context = new CBContext())
             {
+                //  virtual key job kise product mil jaya ge tab ye us category ke information be le aaya ga
                 return context.Products.Find(ID);
             }
         }
 
         public List<Product> GetProduct()
         {
+
             using (var context = new CBContext())
             {
-                return context.Products.ToList();
+                return context.Products.Include(x =>x.Category).ToList();
             }
         }
 
@@ -30,6 +33,8 @@ namespace ClothBazar.Service
         {
             using (var context = new CBContext())
             {
+                context.Entry(product.Category).State = System.Data.Entity.EntityState.Unchanged;
+                
                 context.Products.Add(product);
                 context.SaveChanges();
             }

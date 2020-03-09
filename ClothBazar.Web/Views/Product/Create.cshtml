@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Category>
 @{
     ViewBag.Title = "Create";
 }
@@ -6,6 +6,15 @@
 <h2>Create Product</h2>
 
 <form id="createProduct">
+    <label>Catergory</label>
+    <select name="categoryID">
+        @foreach (var catergory in Model)
+        {
+            <option name value="@catergory.ID">@catergory.Name</option>
+        }
+
+    </select>
+    <br />
     <label>Name</label>
     <input name="Name"/>
     <br />
