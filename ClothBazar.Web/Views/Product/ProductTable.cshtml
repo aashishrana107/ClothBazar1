@@ -52,6 +52,7 @@
                     <td>
                         <button class="editBtn" data-id="@product.ID">Edit</button>
                         <button class="deteteBtn" data-id="@product.ID">Delete</button>
+                        <button class="addtoCart" data-id="@product.ID">Add To Cart</button>
                     </td>
                 </tr>
             }
@@ -112,10 +113,17 @@
 
     $(".deteteBtn").click(function () {
 
-        var confirmDelete = confirm("Are you Sure want to Delete this Product");
-        if (confirmDelete == true)
-        {
-                $.ajax({
+        swal({
+            title: "Are you Sure want to Delete this Product?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    
+                    $.ajax({
                     type: 'POST',
                     url: '/Product/Delete',
                     data: {
@@ -124,14 +132,51 @@
                 })
                 .done(function (response) {
                     $("#tableContainer").html(response);
+                    swal("Poof! Product has been deleted!", {
+                        icon: "success",
+                    });
                 })
                 .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("Fail");
                 });
-        }
+                }
+                else {
+                swal("Your imaginary file is safe!");
+                }
+            });
+
+        //var confirmDelete = confirm("Are you Sure want to Delete this Product");
+        //if (confirmDelete == true)
+        //{
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/Product/Delete',
+        //            data: {
+        //                ID: $(this).attr('data-id')
+        //            }
+        //        })
+        //        .done(function (response) {
+        //            $("#tableContainer").html(response);
+        //        })
+        //        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        //            alert("Fail");
+        //        });
+        //}
         });
     
 
+    var products = [];
+
+    $(".addtoCart").click(function () {
+
+        var productId = $(this).attr('data-id');
+
+        products.push(productId);
+
+        $.cookie('CardProducts', products.join('-'));                  //cockie me name or productid
+
+        alert("Product Add to Cart")
+    });
 
 
 </script>

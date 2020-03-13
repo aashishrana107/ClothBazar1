@@ -11,5 +11,7 @@ namespace ClothBazar.Entities
         public string ImageURL { get; set; }
 
         public List<Product> Products { get; set; }
+
+        public bool isFeatured { get; set; }// database me iss ko bit me store kraga
     }
 }

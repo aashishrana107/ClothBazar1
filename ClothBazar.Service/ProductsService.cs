@@ -11,12 +11,22 @@ namespace ClothBazar.Service
 {
     public class ProductsService
     {
+
         public Product EditProduct(int ID)
         {
             using (var context = new CBContext())
             {
                 //  virtual key job kise product mil jaya ge tab ye us category ke information be le aaya ga
                 return context.Products.Find(ID);
+            }
+        }
+
+        // iss ka use Shop Controller me hoga
+        public List<Product>  GetProduct(List<int> IDs)
+        {
+            using (var context = new CBContext())
+            {
+                return context.Products.Where(s => IDs.Contains(s.ID)).ToList();
             }
         }
 

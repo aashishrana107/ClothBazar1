@@ -17,6 +17,17 @@ namespace ClothBazar.Service
                 return context.Categories.ToList();
             }
         }
+        public List<Category> GetFeaturedCategory()
+        {
+            using (var context = new CBContext())
+            {
+                return context.Categories.Where(s=> s.isFeatured == true && s.ImageURL != null).ToList();
+            }
+        }
+
+
+
+
         public void SaveCategory(Category category)
         {
             using (var context = new CBContext())
@@ -46,8 +57,9 @@ namespace ClothBazar.Service
         {
             using (var context = new CBContext())
             {
-                // context.Entry(category).State = System.Data.Entity.EntityState.Deleted;
-                var category = context.Categories.Where(s => s.ID == ID).FirstOrDefault();
+                var category = context.Categories.Find(ID);
+               // context.Entry(category).State = System.Data.Entity.EntityState.Deleted;
+ 
                 context.Categories.Remove(category);
                 context.SaveChanges();
             }

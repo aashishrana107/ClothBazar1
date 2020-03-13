@@ -1,18 +1,45 @@
 ﻿@model ClothBazar.Entities.Category
 @{
     ViewBag.Title = "Edit";
+    var trueChecked = Model.isFeatured == true ? "checked" : string.Empty;
+    var falseChecked = Model.isFeatured == false ? "checked" : string.Empty;
 }
 
 <h2>Edit Category</h2>
 
-<form method="post">
+<form id="editCategory">
     <input name="ID" value="@Model.ID" type="hidden" />
 
     <label>Name</label>
-    <input name="Name" value="@Model.Name"/>
+    <input name="Name" value="@Model.Name" />
     <br />
     <label>Description</label>
-    <input name="Description" value="@Model.Description"/>
+    <input name="Description" value="@Model.Description" />
     <br />
-    <button type="submit">Save</button>
+    <label>Is Featured?</label>
+
+    <input name="isFeatured" type="radio" value="True" @trueChecked />True
+    <input name="isFeatured" type="radio" value="False" @falseChecked />False
+    <br />
+    <button id="updateBtn" type="submit">Save</button>
 </form>
+
+
+<script>
+
+    $("#updateBtn").click(function () {
+        var searchValue = $("#searchTxt").val();
+        $.ajax({
+            type: 'POST',
+            url: '/Category/Edit',
+            data: $("#editCategory").serialize()
+        })
+            .done(function (response) {
+                $("#tableContainer").html(response);
+                $("#actionContainer").html("");
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Fail");
+            });
+    });
+</script>

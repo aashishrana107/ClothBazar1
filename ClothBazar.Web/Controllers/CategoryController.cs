@@ -16,41 +16,55 @@ namespace ClothBazar.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var categories = catergoriesService.GetCategory();
+           
 
-            return View(categories);
+            return View();
         }
+
+        public ActionResult CategoryTable(string search)
+        {
+            var categories = catergoriesService.GetCategory();
+            if(string.IsNullOrEmpty(search) == false)
+            {
+                categories = categories.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
+            }
+            return PartialView(categories);
+            
+        }
+
+
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+           
+            return PartialView();
         }
         [HttpPost]
         public ActionResult Create(Category catergory)
         {
             catergoriesService.SaveCategory(catergory);
-            return RedirectToAction("Index");
+            return RedirectToAction("CategoryTable");
         }
 
         [HttpGet]
         public ActionResult Edit(int ID)
         {
             var category = catergoriesService.EditCategory(ID);
-            return View(category);
+            return PartialView(category);
         }
         [HttpPost]
         public ActionResult Edit(Category catergory)
         {
             catergoriesService.EditCategory(catergory);
-            return RedirectToAction("Index");
+            return RedirectToAction("CategoryTable");
         }
 
         [HttpGet]
-        public ActionResult Delete(Category category)
+        public ActionResult Delete(int ID)
         {
-            catergoriesService.DeleteCategory(category.ID);
-            return RedirectToAction("Index");
+            catergoriesService.DeleteCategory(ID);
+            return RedirectToAction("CategoryTable");
         }
         
     }
