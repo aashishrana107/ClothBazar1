@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ConfigurationsService configurationsService = new ConfigurationsService();
+}
+
+
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -181,11 +186,20 @@
                                 </div>
                             </form>
                             <ul class="flat-social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google"></i></a></li>
+                            @{ 
+                                var facebookURL = configurationsService.GetConfig("FACEBOOKURL");
+                                var TwiTTERURL = configurationsService.GetConfig("TWITTERURL");
+                                var COMPANYAddress = configurationsService.GetConfig("COMPANYADDRESS");
+                                var Companyphone = configurationsService.GetConfig("COMPANYPHONE");
+                                var Compnaymail = configurationsService.GetConfig("COMPANYMAIL");
+                                var linkedin = configurationsService.GetConfig("LINKEDINURL");
+                                var googleurl = configurationsService.GetConfig("GOOGLEURL");
+                            }
+                                <li><a href="@facebookURL.value"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="@TwiTTERURL.value"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="@googleurl.value"><i class="fa fa-google"></i></a></li>
                                 <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="@linkedin.value"><i class="fa fa-linkedin"></i></a></li>
                             </ul><!-- /.flat-social -->
                         </div><!-- /.subscribe -->
                     </div>
@@ -232,9 +246,9 @@
                                 <a href="index.html"><img src="~/Content/images/logo@2x.png" alt="image" width="107" height="24"></a>
                             </div>
                             <ul class="flat-contact">
-                                <li class="address">112 Kingdom, NA 12, New York</li>
-                                <li class="phone">+12 345 678 910</li>
-                                <li class="email">infor.deercreative@gmail.com</li>
+                                <li class="address">@COMPANYAddress.value</li>
+                                <li class="phone">@Companyphone.value</li>
+                                <li class="email">@Compnaymail.value</li>
                             </ul><!-- /.flat-contact -->
                         </div><!-- /.widget -->
                     </div><!-- /.col-md-3 -->

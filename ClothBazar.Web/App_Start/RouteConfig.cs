@@ -13,6 +13,19 @@ namespace ClothBazar.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                name: "ControlPanel",
+                url: "control-panel",
+                defaults: new { controller = "Category", action = "CategoryTable" }
+            );
+
+            routes.MapRoute(
+                name: "Default1",
+                url: "search/all",
+                defaults: new { controller = "Category", action = "CategoryTable"}
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
