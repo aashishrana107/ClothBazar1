@@ -52,7 +52,8 @@ namespace ClothBazar.Service
 
             using (var context = new CBContext())
             {
-                return context.Products.OrderBy(s=>s.ID).Skip((pageNo-1)*pageSize).Take(pageSize).Include(x =>x.Category).ToList();
+                // return context.Products.OrderBy(s=>s.ID).Skip((pageNo-1)*pageSize).Take(pageSize).Include(x =>x.Category).ToList();
+                return context.Products.Include(s => s.Category).ToList();
             }
         }
 
