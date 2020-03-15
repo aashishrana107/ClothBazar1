@@ -11,7 +11,7 @@ namespace ClothBazar.Web.Controllers
 {
     public class ProductController : Controller
     {
-        ProductsService ProductsService = new ProductsService();
+       // ProductsService ProductsService = new ProductsService();
         // GET: Product
         public ActionResult Index()
         {
@@ -19,19 +19,23 @@ namespace ClothBazar.Web.Controllers
             return View();
         }
 
-        public ActionResult ProductTable(string search)
+        public ActionResult ProductTable(string search, int? pageNo)
         {
-            var products = ProductsService.GetProduct();
+            ProductSerachViewModel model = new ProductSerachViewModel();
+
+            model.pageNo = pageNo.HasValue ? pageNo.Value : 1;
+
+            model.products = ProductsService.ClassObject.GetProduct(model.pageNo);
             //if(search==null)
 
             if(string.IsNullOrEmpty(search) == false)
             {
                 //no ho to
               ///  products = products.Where(p =>p.Name !=null && p.Name.Contains(search)).ToList();
-                products = products.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
+                model.products = model.products.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
 
             }
-            return PartialView(products);
+            return PartialView(model);
         }
 
         [HttpGet]
@@ -53,28 +57,28 @@ namespace ClothBazar.Web.Controllers
             newProduct.Price = model.Price;
          //   newProduct.CategoryID = model.categoryID;
             newProduct.Category = catergoriesService.EditCategory(model.categoryID);
-            ProductsService.SaveProduct(newProduct);
+            ProductsService.ClassObject.SaveProduct(newProduct);
             return RedirectToAction("ProductTable");
         }
 
         [HttpGet]
         public ActionResult Edit(int ID)
         {
-            var product = ProductsService.EditProduct(ID);
+            var product = ProductsService.ClassObject.EditProduct(ID);
             return PartialView(product);
         }
 
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            ProductsService.EditProduct(product);
+            ProductsService.ClassObject.EditProduct(product);
             return RedirectToAction("ProductTable");
         }
 
         [HttpPost]
         public ActionResult Delete(int ID)
         {
-            ProductsService.DeleteProduct(ID);
+            ProductsService.ClassObject.DeleteProduct(ID);
             return RedirectToAction("ProductTable");
         }
     }

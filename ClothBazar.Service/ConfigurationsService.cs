@@ -10,6 +10,19 @@ namespace ClothBazar.Service
 {
     public class ConfigurationsService
     {
+        ////kyoki hum isse other classes hum iska use karge
+        //public static ConfigurationsService Instance {
+        //    get
+        //    {
+        //        if (instance == null) instance = new ConfigurationsService();
+        //        return instance;
+        //    }
+        //}
+        //private static ConfigurationsService instance { get; set; }
+        //private ConfigurationsService()
+        //{
+
+        //}
         public Config GetConfig(string Key)
         {
             using (var context = new CBContext())

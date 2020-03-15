@@ -11,7 +11,23 @@ namespace ClothBazar.Service
 {
     public class ProductsService
     {
+        #region Single ton
+        //kyoki hum isse other classes hum iska use karge
+        public static ProductsService ClassObject
+        {
+            get
+            {
+                if (privateInMemory == null) privateInMemory = new ProductsService();
+                return privateInMemory;
+            }
+        }
+        private static ProductsService privateInMemory { get; set; }
+        #endregion end single ton
 
+        private ProductsService()
+        {
+
+        }
         public Product EditProduct(int ID)
         {
             using (var context = new CBContext())
@@ -30,12 +46,13 @@ namespace ClothBazar.Service
             }
         }
 
-        public List<Product> GetProduct()
+        public List<Product> GetProduct(int pageNo)
         {
+            int pageSize = 5;
 
             using (var context = new CBContext())
             {
-                return context.Products.Include(x =>x.Category).ToList();
+                return context.Products.OrderBy(s=>s.ID).Skip((pageNo-1)*pageSize).Take(pageSize).Include(x =>x.Category).ToList();
             }
         }
 
