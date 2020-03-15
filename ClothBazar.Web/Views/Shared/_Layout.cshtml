@@ -1,6 +1,6 @@
-﻿@{
+﻿@*@{
     ConfigurationsService configurationsService = new ConfigurationsService();
-}
+}*@
 
 
 <!DOCTYPE html>
@@ -187,13 +187,13 @@
                             </form>
                             <ul class="flat-social">
                             @{ 
-                                var facebookURL = configurationsService.GetConfig("FACEBOOKURL");
-                                var TwiTTERURL = configurationsService.GetConfig("TWITTERURL");
-                                var COMPANYAddress = configurationsService.GetConfig("COMPANYADDRESS");
-                                var Companyphone = configurationsService.GetConfig("COMPANYPHONE");
-                                var Compnaymail = configurationsService.GetConfig("COMPANYMAIL");
-                                var linkedin = configurationsService.GetConfig("LINKEDINURL");
-                                var googleurl = configurationsService.GetConfig("GOOGLEURL");
+                                var facebookURL = ConfigurationsService.Instance.GetConfig("FACEBOOKURL");
+                                var TwiTTERURL = ConfigurationsService.Instance.GetConfig("TWITTERURL");
+                                var COMPANYAddress = ConfigurationsService.Instance.GetConfig("COMPANYADDRESS");
+                                var Companyphone = ConfigurationsService.Instance.GetConfig("COMPANYPHONE");
+                                var Compnaymail = ConfigurationsService.Instance.GetConfig("COMPANYMAIL");
+                                var linkedin = ConfigurationsService.Instance.GetConfig("LINKEDINURL");
+                                var googleurl = ConfigurationsService.Instance.GetConfig("GOOGLEURL");
                             }
                                 <li><a href="@facebookURL.value"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="@TwiTTERURL.value"><i class="fa fa-twitter"></i></a></li>

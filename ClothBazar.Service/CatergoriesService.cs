@@ -10,6 +10,21 @@ namespace ClothBazar.Service
 {
     public class CatergoriesService
     {
+
+        public static CatergoriesService Instance
+        {
+            get
+            {
+                if (instance == null) instance = new CatergoriesService();
+                return instance;
+            }
+        }
+        private static CatergoriesService instance { get; set; }
+        private CatergoriesService()
+        {
+
+        }
+
         public List<Category> GetCategory()
         {
             using (var context = new CBContext())

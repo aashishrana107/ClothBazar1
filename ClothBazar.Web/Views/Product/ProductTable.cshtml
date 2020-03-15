@@ -19,6 +19,7 @@
             <input type="text" class="form-control" placeholder="Search Here" name="search" id="searchTxt" aria-label="Recipient's username with two button addons" aria-describedby="button-addon4">
             <div class="input-group-append" id="button-addon4">
                 <button id="searchBtn" type="button">Search</button>
+                <button id="resetBtn" type="button">Reset</button>
                 <button id="newBtn" type="button">New</button>
             </div>
         </div>
@@ -77,6 +78,15 @@
 
 <script>
 
+
+
+
+
+
+
+
+
+    //this use for tabledata
     $('#productstable').DataTable();
 
 
@@ -101,6 +111,23 @@
 
     $("#searchBtn").click(function () {
         var searchValue = $("#searchTxt").val();
+        $.ajax({
+            url: '/Product/ProductTable',
+            data: {
+                search: searchValue
+            }
+        })
+            .done(function (response) {
+                $("#tableContainer").html(response);
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Fail");
+            });
+    });
+
+
+    $("#resetBtn").click(function () {
+        var searchValue = '';
         $.ajax({
             url: '/Product/ProductTable',
             data: {

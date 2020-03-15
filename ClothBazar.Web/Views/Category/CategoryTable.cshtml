@@ -13,6 +13,7 @@
             <input type="text" class="form-control" placeholder="Search Here" name="search" id="searchTxt" aria-label="Recipient's username with two button addons" aria-describedby="button-addon4">
             <div class="input-group-append" id="button-addon4">
                 <button id="searchBtn" type="button">Search</button>
+                <button id="resetBtn" type="button">Reset</button>
                 <button id="newBtn" type="button">New</button>
             </div>
         </div>
@@ -63,6 +64,23 @@
 }
 
 <script>
+    
+    $("#resetBtn").click(function () {
+        var searchValue = '';
+        $.ajax({
+            url: '@Url.Action("CategoryTable", "Category")',//'/Category/CategoryTable',
+            data: {
+                search: searchValue
+            }
+        })
+            .done(function (response) {
+                $("#tableContainer").html(response);
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Fail");
+            });
+    });
+
 
     $("#searchBtn").click(function () {
         var searchValue = $("#searchTxt").val();
@@ -83,11 +101,12 @@
 
     $("#newBtn").click(function () {
         $.ajax({
-            url: '/Category/Create',
+          //  url: '/Category/Create',
+            url: '@Url.Action("Create", "Category")',
         })
             .done(function (response) {
                 $("#actionContainer").html(response);
-                focusAction();
+                focusAction("actionContainer");
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Fail");
@@ -106,7 +125,7 @@
         })
             .done(function (response) {
                 $("#actionContainer").html(response);
-                focusAction();
+                focusAction("actionContainer");
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Fail");
@@ -137,12 +156,7 @@
 
 
 
-    function focusAction()
-    {
-        $('html, body').animate({
-            scrollTop: $("#actionContainer").offset().top - 100
-        }, 1000);
-    }
+    
 
 
 </script>

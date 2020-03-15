@@ -59,22 +59,22 @@ namespace ClothBazar.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            CatergoriesService catergoriesService = new CatergoriesService();
-            var category = catergoriesService.GetCategory();
+            //CatergoriesService catergoriesService = new CatergoriesService();
+            var category = CatergoriesService.Instance.GetCategory();
             return PartialView(category);
         }
 
         [HttpPost]
         public ActionResult Create(CategoriesViewModels model)
         {
-            CatergoriesService catergoriesService = new CatergoriesService();
+           // CatergoriesService catergoriesService = new CatergoriesService();
 
             var newProduct =new Product();
             newProduct.Name = model.Name;
             newProduct.Description = model.Description;
             newProduct.Price = model.Price;
          //   newProduct.CategoryID = model.categoryID;
-            newProduct.Category = catergoriesService.EditCategory(model.categoryID);
+            newProduct.Category = CatergoriesService.Instance.EditCategory(model.categoryID);
             ProductsService.ClassObject.SaveProduct(newProduct);
             return RedirectToAction("ProductTable");
         }

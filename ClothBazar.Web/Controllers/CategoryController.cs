@@ -11,7 +11,7 @@ namespace ClothBazar.Web.Controllers
     public class CategoryController : Controller
     {
 
-        CatergoriesService catergoriesService = new CatergoriesService();
+       // CatergoriesService catergoriesService = new CatergoriesService();
 
         [HttpGet]
         public ActionResult Index()
@@ -23,7 +23,7 @@ namespace ClothBazar.Web.Controllers
 
         public ActionResult CategoryTable(string search)
         {
-            var categories = catergoriesService.GetCategory();
+            var categories = CatergoriesService.Instance.GetCategory();
             if(string.IsNullOrEmpty(search) == false)
             {
                 categories = categories.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
@@ -43,27 +43,27 @@ namespace ClothBazar.Web.Controllers
         [HttpPost]
         public ActionResult Create(Category catergory)
         {
-            catergoriesService.SaveCategory(catergory);
+            CatergoriesService.Instance.SaveCategory(catergory);
             return RedirectToAction("CategoryTable");
         }
 
         [HttpGet]
         public ActionResult Edit(int ID)
         {
-            var category = catergoriesService.EditCategory(ID);
+            var category = CatergoriesService.Instance.EditCategory(ID);
             return PartialView(category);
         }
         [HttpPost]
         public ActionResult Edit(Category catergory)
         {
-            catergoriesService.EditCategory(catergory);
+            CatergoriesService.Instance.EditCategory(catergory);
             return RedirectToAction("CategoryTable");
         }
 
         [HttpGet]
         public ActionResult Delete(int ID)
         {
-            catergoriesService.DeleteCategory(ID);
+            CatergoriesService.Instance.DeleteCategory(ID);
             return RedirectToAction("CategoryTable");
         }
         
