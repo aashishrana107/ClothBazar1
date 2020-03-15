@@ -59,11 +59,13 @@
                 </tr>
             }
         </tbody>
+        
     </table>
     <div>
-
+        @if (Model.pageNo != 1)
+        {
         <button class="pageButtons" data-pageNo="@(Model.pageNo - 1)">Previous</button>
-
+        }
         <button class="pageButtons" data-pageNo="@(Model.pageNo + 1)">Next</button>
     </div>
 </div>

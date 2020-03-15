@@ -23,7 +23,25 @@ namespace ClothBazar.Web.Controllers
         {
             ProductSerachViewModel model = new ProductSerachViewModel();
 
-            model.pageNo = pageNo.HasValue ? pageNo.Value : 1;
+            model.pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
+            //if(pageNo.HasValue)
+            //{
+            //    if(pageNo.Value>0)
+            //    {
+            //        model.pageNo = pageNo.Value;
+            //    }
+            //    else
+            //    {
+            //        model.pageNo = 1;
+            //    }
+            //}
+            //else
+            //{
+            //    model.pageNo = 1;
+            //}
+            
+
+
 
             model.products = ProductsService.ClassObject.GetProduct(model.pageNo);
             //if(search==null)
