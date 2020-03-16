@@ -20,7 +20,8 @@ namespace ClothBazar.Web.Controllers
         }
 
         public ActionResult ProductTable(string search, int? pageNo)
-        {
+        
+            {
             ProductSerachViewModel model = new ProductSerachViewModel();
 
             model.pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;

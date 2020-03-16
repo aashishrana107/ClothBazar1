@@ -26,6 +26,19 @@
             <label>Description</label>
             <input class="form-control" name="Description" />
         </div>
+
+        <div class="form-group">
+            <label>Image</label>
+            <input name="ImageURL" id="ImageURL" type="hidden" />
+            <input id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
+        </div>
+        <div class="form-group">
+            <div class="thumb">
+                <img id="productImage" alt="Image">
+            </div>
+        </div>
+        
+
         <div class="form-group">
             <label>Price</label>
             <input class="form-control" name="Price" />
@@ -35,6 +48,41 @@
 </div>
 
 <script>
+    $("#imageUpload").change(function () {
+        var element = this                        //Mean changefunction this time is this 
+
+        var formData = new FormData();
+
+        var totalFiles = element.files.length;      //multiple file 
+
+        for (var i = 0; i < totalFiles; i++) {
+            var file = element.files[i];
+            formData.append("Photo", file);     //sabhi filo ko formData ke ander add kr reha hai
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/Shared/UploadImage',
+            dataType: 'json',
+            data: formData,
+            contentType: false,
+            processData: false
+        })
+            .done(function (response) {
+                debugger;
+                console.log(response);  //
+                if (response.Success == true) {
+                    $("#ImageURL").val(response.ImageURL);
+                    $("#productImage").attr("src", response.ImageURL);
+                }
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Fail");
+            });
+    });
+
+
+
 
     $("#saveBtn").click(function () {
         var searchValue = $("#searchTxt").val();
